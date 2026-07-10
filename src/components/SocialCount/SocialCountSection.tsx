@@ -5,9 +5,6 @@ import { motion, useInView } from 'framer-motion'
 import { FaHeart } from 'react-icons/fa'
 
 export default function SocialCountSection() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: false, margin: '-80px' })
-
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -55,12 +52,12 @@ export default function SocialCountSection() {
   return (
     <section
       id="countdown"
-      ref={ref}
       className="relative py-24 md:py-32 overflow-hidden bg-[#faf8f5] text-[#2c2825]"
     >
       <motion.div
         initial="hidden"
-        animate={isInView ? 'visible' : 'hidden'}
+        whileInView="visible"
+        viewport={{ once: false, margin: '-80px' }}
         variants={containerVariants}
         className="relative max-w-5xl mx-auto px-6 md:px-12 z-10 flex flex-col items-center"
       >
