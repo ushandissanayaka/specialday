@@ -18,9 +18,23 @@ export default function ScheduleSection() {
   return (
     <section
       id="schedule"
-      className="relative py-24 md:py-36 overflow-hidden bg-white"
+      className="relative py-24 md:py-36 overflow-hidden"
       style={{ fontFamily: '"Playfair Display", serif' }}
     >
+      {/* Fixed Background (Seamless from Gallery) */}
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: "url('/images/BackgroundImages/gallarybackground.png')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed',
+        }}
+      />
+
+      {/* Optional soft overlay to ensure text readability */}
+      <div className="absolute inset-0 bg-white/70 z-0" />
       {/* Background decorative elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-10 left-10 w-72 h-72 rounded-full bg-purple-50 blur-3xl opacity-60" />
@@ -34,7 +48,7 @@ export default function ScheduleSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, margin: '-100px' }}
           transition={{ duration: 0.6 }}
-          className="block text-xs tracking-[6px] uppercase mb-3 text-purple-400"
+          className="block text-xs tracking-[6px] uppercase mb-3 text-stone-900 font-bold"
           style={{ fontFamily: 'Lato, sans-serif' }}
         >
           — The Big Day —
@@ -44,7 +58,7 @@ export default function ScheduleSection() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: false, margin: '-100px' }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="font-normal text-stone-800"
+          className="font-semibold text-black drop-shadow-sm"
           style={{ fontSize: 'clamp(2.2rem, 5vw, 3.8rem)' }}
         >
           📖 Event Schedule
@@ -68,14 +82,14 @@ export default function ScheduleSection() {
               <div className="flex items-center gap-3 mb-1">
                 <span className="text-2xl">{item.icon}</span>
                 <span
-                  className="text-base md:text-lg tracking-[4px] uppercase text-amber-600 font-bold"
+                  className="text-base md:text-lg tracking-[4px] uppercase text-amber-900 font-extrabold"
                   style={{ fontFamily: 'Lato, sans-serif' }}
                 >
                   {item.time}
                 </span>
               </div>
-              <h3 className="text-3xl md:text-4xl font-normal text-stone-800 mb-1">{item.event}</h3>
-              <p className="text-base text-stone-400 italic" style={{ fontFamily: 'Lato, sans-serif' }}>{item.desc}</p>
+              <h3 className="text-3xl md:text-4xl font-medium text-black mb-1">{item.event}</h3>
+              <p className="text-base text-stone-900 font-semibold italic" style={{ fontFamily: 'Lato, sans-serif' }}>{item.desc}</p>
               {/* Connector line */}
               <div className="mt-4 h-px w-32 bg-gradient-to-l from-amber-400 to-transparent self-end" />
             </motion.div>
@@ -160,15 +174,15 @@ export default function ScheduleSection() {
             >
               <div className="flex items-center gap-3 mb-1">
                 <span
-                  className="text-base md:text-lg tracking-[4px] uppercase text-amber-600 font-bold"
+                  className="text-base md:text-lg tracking-[4px] uppercase text-amber-900 font-extrabold"
                   style={{ fontFamily: 'Lato, sans-serif' }}
                 >
                   {item.time}
                 </span>
                 <span className="text-2xl">{item.icon}</span>
               </div>
-              <h3 className="text-3xl md:text-4xl font-normal text-stone-800 mb-1">{item.event}</h3>
-              <p className="text-base text-stone-400 italic" style={{ fontFamily: 'Lato, sans-serif' }}>{item.desc}</p>
+              <h3 className="text-3xl md:text-4xl font-medium text-black mb-1">{item.event}</h3>
+              <p className="text-base text-stone-900 font-semibold italic" style={{ fontFamily: 'Lato, sans-serif' }}>{item.desc}</p>
               {/* Connector line */}
               <div className="mt-4 h-px w-32 bg-gradient-to-r from-amber-400 to-transparent self-start" />
             </motion.div>

@@ -40,7 +40,7 @@ export default function HeroSection() {
         >
           Kasuni & Dasun
         </motion.h1>
-        
+
         <motion.p
           initial={{ y: 200, opacity: 0 }}
           animate={isInView ? { y: 0, opacity: 1 } : { y: 200, opacity: 0 }}
@@ -50,7 +50,7 @@ export default function HeroSection() {
         >
           Joyfully Invite You To Celebrate our Wedding
         </motion.p>
-        
+
         <motion.p
           initial={{ y: 200, opacity: 0 }}
           animate={isInView ? { y: 0, opacity: 1 } : { y: 200, opacity: 0 }}
