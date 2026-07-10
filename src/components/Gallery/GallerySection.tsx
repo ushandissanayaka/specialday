@@ -3,27 +3,30 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 
-// Gallery images data
-const GALLERY_IMAGES = [
-  { src: '/images/gallery/couple1.jpg', label: 'Engagement', tag: 'MEMORIES' },
-  { src: '/images/gallery/couple2.jpg', label: 'Paris Trip', tag: 'MEMORIES' },
-  { src: '/images/gallery/couple3.jpg', label: 'The Proposal', tag: 'MEMORIES' },
-  { src: '/images/gallery/couple4.jpg', label: 'Beach Walk', tag: 'MEMORIES' },
-  { src: '/images/gallery/couple5.jpg', label: 'Anniversary', tag: 'MEMORIES' },
-  { src: '/images/gallery/couple6.jpg', label: 'Hiking', tag: 'MEMORIES' },
-  { src: '/images/gallery/couple7.jpg', label: 'Coffee Date', tag: 'MEMORIES' },
-  { src: '/images/gallery/couple8.jpg', label: 'Winter Skiing', tag: 'MEMORIES' },
-  { src: '/images/gallery/couple9.jpg', label: 'Road Trip', tag: 'MEMORIES' },
-]
+// We have 10 images in the folder
+const GALLERY_IMAGES = Array.from({ length: 10 }, (_, i) => ({
+  src: `/images/gallery/img${i + 1}.jpg`,
+  label: `Memory ${i + 1}`,
+  tag: 'MEMORIES'
+}))
 
 export default function GallerySection() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: false, margin: '-80px' })
+  // Function to determine initial starting position (fly from all directions)
+  const getInitialPosition = (index: number) => {
+    // 0: from top, 1: from right, 2: from bottom, 3: from left
+    const direction = index % 4
+    switch (direction) {
+      case 0: return { y: -100, x: 0, opacity: 0, scale: 0.5 } // Top
+      case 1: return { x: 100, y: 0, opacity: 0, scale: 0.5 }  // Right
+      case 2: return { y: 100, x: 0, opacity: 0, scale: 0.5 }  // Bottom
+      case 3: return { x: -100, y: 0, opacity: 0, scale: 0.5 } // Left
+      default: return { opacity: 0 }
+    }
+  }
 
   return (
     <section
       id="gallery"
-      ref={ref}
       className="relative py-20 md:py-32 overflow-hidden bg-white"
     >
       <div className="relative" style={{ zIndex: 2 }}>
@@ -31,7 +34,8 @@ export default function GallerySection() {
         <div className="text-center mb-16 px-6">
           <motion.span
             initial={{ opacity: 0, y: -20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, margin: '-80px' }}
             transition={{ duration: 0.5 }}
             className="text-xs tracking-[6px] uppercase mb-4 block text-stone-500"
             style={{ fontFamily: 'Lato, sans-serif' }}
@@ -40,7 +44,8 @@ export default function GallerySection() {
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, scale: 0.9 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: false, margin: '-80px' }}
             transition={{ duration: 0.7, delay: 0.1 }}
             className="font-normal"
             style={{
@@ -57,22 +62,23 @@ export default function GallerySection() {
         <div className="max-w-6xl mx-auto px-4 md:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 grid-flow-dense gap-3 md:gap-4 auto-rows-[220px] md:auto-rows-[280px]">
             {GALLERY_IMAGES.map((img, i) => {
-              const isLeft = i % 2 === 0
               const isLarge = i === 0 || i === 5 // Span 2 rows
-              const isWide = i === 2 // Span 2 cols
+              const isWide = i === 2 || i === 7 // Span 2 cols
 
               return (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.7, delay: 0.05 + i * 0.1, ease: 'easeOut' }}
-                  whileHover={{ scale: 1.02, zIndex: 10 }}
-                  className="relative overflow-hidden group cursor-pointer bg-stone-100 border border-stone-200 shadow-sm"
-                  style={{
-                    gridRow: isLarge ? 'span 2' : 'span 1',
-                    gridColumn: isWide ? 'span 2' : 'span 1',
+                  initial={getInitialPosition(i)}
+                  whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
+                  viewport={{ once: false, margin: '-80px' }}
+                  transition={{ 
+                    type: 'spring', 
+                    damping: 18, 
+                    stiffness: 70, 
+                    delay: 0.1 + (i * 0.1) // Staggered entry
                   }}
+                  whileHover={{ scale: 1.03, zIndex: 10, boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.2)' }}
+                  className={`relative overflow-hidden group cursor-pointer bg-stone-100 border border-stone-200 shadow-sm rounded-md ${isLarge ? 'md:row-span-2' : ''} ${isWide ? 'md:col-span-2' : ''}`}
                 >
                   {/* Actual image */}
                   <div
