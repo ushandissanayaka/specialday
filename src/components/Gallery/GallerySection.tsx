@@ -3,12 +3,19 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 
-// We have 10 images in the folder
-const GALLERY_IMAGES = Array.from({ length: 10 }, (_, i) => ({
-  src: `/images/gallery/img${i + 1}.jpg`,
-  label: `Memory ${i + 1}`,
-  tag: 'MEMORIES'
-}))
+// We have 10 images in the folder, plus we add img3.jpg again to fill the final empty space perfectly
+const GALLERY_IMAGES = [
+  ...Array.from({ length: 10 }, (_, i) => ({
+    src: `/images/gallery/img${i + 1}.jpg`,
+    label: `Memory ${i + 1}`,
+    tag: 'MEMORIES'
+  })),
+  {
+    src: '/images/gallery/img3.jpg',
+    label: 'Memory 11',
+    tag: 'MEMORIES'
+  }
+]
 
 export default function GallerySection() {
   // Function to determine initial starting position (fly from all directions)
@@ -27,9 +34,24 @@ export default function GallerySection() {
   return (
     <section
       id="gallery"
-      className="relative py-20 md:py-32 overflow-hidden bg-white"
+      className="relative py-20 md:py-32 overflow-hidden"
     >
-      <div className="relative" style={{ zIndex: 2 }}>
+      {/* Fixed Background */}
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: "url('/images/BackgroundImages/gallarybackground.png')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed',
+        }}
+      />
+
+      {/* Optional soft overlay to ensure text readability */}
+      <div className="absolute inset-0 bg-white/70 z-0" />
+
+      <div className="relative z-10">
         {/* Header */}
         <div className="text-center mb-16 px-6">
           <motion.span
@@ -63,7 +85,7 @@ export default function GallerySection() {
           <div className="grid grid-cols-2 md:grid-cols-4 grid-flow-dense gap-3 md:gap-4 auto-rows-[220px] md:auto-rows-[280px]">
             {GALLERY_IMAGES.map((img, i) => {
               const isLarge = i === 0 || i === 5 // Span 2 rows
-              const isWide = i === 2 || i === 7 // Span 2 cols
+              const isWide = i === 2 || i === 7 || i === 10 // Span 2 cols
 
               return (
                 <motion.div
@@ -71,14 +93,14 @@ export default function GallerySection() {
                   initial={getInitialPosition(i)}
                   whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
                   viewport={{ once: false, margin: '-80px' }}
-                  transition={{ 
-                    type: 'spring', 
-                    damping: 18, 
-                    stiffness: 70, 
+                  transition={{
+                    type: 'spring',
+                    damping: 18,
+                    stiffness: 70,
                     delay: 0.1 + (i * 0.1) // Staggered entry
                   }}
                   whileHover={{ scale: 1.03, zIndex: 10, boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.2)' }}
-                  className={`relative overflow-hidden group cursor-pointer bg-stone-100 border border-stone-200 shadow-sm rounded-md ${isLarge ? 'md:row-span-2' : ''} ${isWide ? 'md:col-span-2' : ''}`}
+                  className={`relative overflow-hidden group cursor-pointer bg-stone-100 border border-stone-200 shadow-sm rounded-md ${isLarge ? 'row-span-2' : ''} ${isWide ? 'col-span-2' : ''}`}
                 >
                   {/* Actual image */}
                   <div
