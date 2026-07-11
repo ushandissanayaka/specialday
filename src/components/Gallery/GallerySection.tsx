@@ -57,7 +57,7 @@ export default function GallerySection() {
           <motion.span
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, margin: '-80px' }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.5 }}
             className="text-xs tracking-[6px] uppercase mb-4 block text-stone-500"
             style={{ fontFamily: 'Lato, sans-serif' }}
@@ -67,7 +67,7 @@ export default function GallerySection() {
           <motion.h2
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: false, margin: '-80px' }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.7, delay: 0.1 }}
             className="font-normal"
             style={{
@@ -82,7 +82,7 @@ export default function GallerySection() {
 
         {/* Masonry-style gallery */}
         <div className="max-w-6xl mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 grid-flow-dense gap-3 md:gap-4 auto-rows-[220px] md:auto-rows-[280px]">
+          <div className="grid grid-cols-2 md:grid-cols-4 grid-flow-dense gap-3 md:gap-4 auto-rows-[140px] sm:auto-rows-[180px] md:auto-rows-[280px]">
             {GALLERY_IMAGES.map((img, i) => {
               const isLarge = i === 0 || i === 5 // Span 2 rows
               const isWide = i === 2 || i === 7 || i === 10 // Span 2 cols
@@ -92,7 +92,7 @@ export default function GallerySection() {
                   key={i}
                   initial={getInitialPosition(i)}
                   whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
-                  viewport={{ once: false, margin: '-80px' }}
+                  viewport={{ once: true, amount: 0.1 }}
                   transition={{
                     type: 'spring',
                     damping: 18,

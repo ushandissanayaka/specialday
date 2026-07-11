@@ -30,9 +30,18 @@ body {
 }
 
 /* Scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #0a0a0a; }
-::-webkit-scrollbar-thumb { background: var(--orange); border-radius: 3px; }
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--orange);
+  border-radius: 3px;
+}
 
 /* Orange glow utility */
 .glow-orange {
@@ -40,21 +49,47 @@ body {
 }
 
 .glow-box {
-  box-shadow: 0 0 20px var(--orange-glow), 0 0 40px rgba(255,107,0,0.2);
+  box-shadow: 0 0 20px var(--orange-glow), 0 0 40px rgba(255, 107, 0, 0.2);
 }
 
 /* Typing animation */
 @keyframes typing {
-  0% { width: 0; opacity: 1; }
-  45% { width: 100%; opacity: 1; }
-  55% { width: 100%; opacity: 1; }
-  95% { width: 0; opacity: 1; }
-  100% { width: 0; opacity: 1; }
+  0% {
+    width: 0;
+    opacity: 1;
+  }
+
+  45% {
+    width: 100%;
+    opacity: 1;
+  }
+
+  55% {
+    width: 100%;
+    opacity: 1;
+  }
+
+  95% {
+    width: 0;
+    opacity: 1;
+  }
+
+  100% {
+    width: 0;
+    opacity: 1;
+  }
 }
 
 @keyframes blink-caret {
-  from, to { border-color: transparent; }
-  50% { border-color: #FF6B00; }
+
+  from,
+  to {
+    border-color: transparent;
+  }
+
+  50% {
+    border-color: #FF6B00;
+  }
 }
 
 .typing-text {
@@ -67,16 +102,38 @@ body {
 
 /* Rotate skills */
 @keyframes rotateSkillsUp {
-  0% { transform: translateY(0); opacity: 1; }
-  25% { transform: translateY(-100%); opacity: 0; }
-  26% { transform: translateY(100%); opacity: 0; }
-  50% { transform: translateY(0); opacity: 1; }
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  25% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  26% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  50% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 /* Float animation */
 @keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-15px) rotate(1deg); }
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-15px) rotate(1deg);
+  }
 }
 
 .float-anim {
@@ -85,27 +142,61 @@ body {
 
 /* Particle dots */
 @keyframes particleDrift {
-  0% { transform: translateY(0) translateX(0); opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-100vh) translateX(50px);
+    opacity: 0;
+  }
 }
 
 /* Count up animation */
 @keyframes countUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Slide in from sides */
 @keyframes slideInLeft {
-  from { transform: translateX(-100px); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+  from {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 @keyframes slideInRight {
-  from { transform: translateX(100px); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+  from {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 /* Orange border gradient */
@@ -115,7 +206,7 @@ body {
 
 .orange-border-glow {
   border: 1px solid #FF6B00;
-  box-shadow: 0 0 15px rgba(255,107,0,0.3), inset 0 0 15px rgba(255,107,0,0.05);
+  box-shadow: 0 0 15px rgba(255, 107, 0, 0.3), inset 0 0 15px rgba(255, 107, 0, 0.05);
 }
 
 /* Section divider */
@@ -126,11 +217,11 @@ body {
 
 /* 3D text effect */
 .text-3d {
-  text-shadow: 
+  text-shadow:
     1px 1px 0 #cc5500,
     2px 2px 0 #aa4400,
     3px 3px 0 #883300,
-    4px 4px 8px rgba(0,0,0,0.5);
+    4px 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 /* Noise overlay for texture */
@@ -164,8 +255,8 @@ body {
 
 /* Skill tag */
 .skill-tag {
-  background: rgba(255,107,0,0.1);
-  border: 1px solid rgba(255,107,0,0.3);
+  background: rgba(255, 107, 0, 0.1);
+  border: 1px solid rgba(255, 107, 0, 0.3);
   color: #FF6B00;
   padding: 4px 12px;
   border-radius: 2px;
@@ -186,7 +277,7 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(255,107,0,0.1);
+  background: rgba(255, 107, 0, 0.1);
   transform: scale(0);
   border-radius: 50%;
   transition: transform 0.3s ease;
@@ -199,6 +290,6 @@ body {
 .social-icon-btn:hover {
   border-color: #FF6B00 !important;
   color: #FF6B00 !important;
-  box-shadow: 0 0 20px rgba(255,107,0,0.3);
+  box-shadow: 0 0 20px rgba(255, 107, 0, 0.3);
   transform: translateY(-4px);
 }

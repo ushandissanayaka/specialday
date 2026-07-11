@@ -98,7 +98,7 @@ export default function ContactSection() {
               >
                 We humbly request your kind presence at our wedding celebration.
               </p>
-              
+
               <p
                 className="text-white/80 text-base md:text-lg leading-relaxed"
                 style={{ fontFamily: 'Lato, sans-serif' }}
@@ -117,7 +117,7 @@ export default function ContactSection() {
             {/* Confirm Attendance Button - Gold Transparent */}
             <div className="pt-8">
               <motion.button
-                whileHover={{ 
+                whileHover={{
                   scale: 1.08,
                   boxShadow: '0 0 40px rgba(212,175,55,0.6), 0 0 60px rgba(255,215,0,0.4)',
                 }}
