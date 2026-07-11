@@ -96,41 +96,59 @@ export default function ScheduleSection() {
           ))}
         </div>
 
-        {/* CENTER RING */}
+        {/* CENTER — 3D Gold Medallion Frame */}
         <motion.div
           initial={{ opacity: 0, scale: 0.3, rotate: -30 }}
           whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-          viewport={{ once: false, margin: '-100px' }}
+          viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 1.2, delay: 0.3, type: 'spring', stiffness: 50, damping: 14 }}
           className="relative flex-shrink-0 flex items-center justify-center"
-          style={{ width: 320, height: 320 }}
+          style={{ width: 400, height: 400 }}
         >
-          {/* Outer decorative ring (gold wedding band style) */}
+          {/* 3D outer glow halo */}
           <div
             className="absolute inset-0 rounded-full"
             style={{
-              background: 'conic-gradient(from 0deg, #b8860b, #ffd700, #ffec8b, #daa520, #ffd700, #b8860b, #ffd700, #ffe066, #b8860b)',
-              padding: 18,
-              boxShadow: '0 0 40px 8px rgba(218,165,32,0.4), 0 0 80px 20px rgba(255,215,0,0.15)',
+              boxShadow:
+                '0 0 80px 30px rgba(218,165,32,0.35), 0 0 150px 50px rgba(255,215,0,0.12)',
+            }}
+          />
+
+          {/* 3D medallion border — single ring with depth */}
+          <div
+            className="absolute inset-0 rounded-full"
+            style={{
+              background:
+                'radial-gradient(ellipse at 30% 25%, #fff7a1 0%, #ffd700 20%, #c8960c 50%, #7a5800 75%, #3d2b00 100%)',
+              boxShadow:
+                /* top-left rim highlight */
+                'inset 6px 6px 18px rgba(255,255,180,0.8),' +
+                /* bottom-right depth shadow */
+                'inset -8px -8px 24px rgba(0,0,0,0.55),' +
+                /* outer drop shadow for lift */
+                '0 24px 70px rgba(0,0,0,0.45), 0 6px 20px rgba(184,134,11,0.6)',
+              padding: 24, // thicker ring
             }}
           >
-            {/* Inner white gap (ring thickness effect) */}
-            <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-              {/* Second ring band */}
+            {/* Inner inset shadow ring for depth */}
+            <div
+              className="w-full h-full rounded-full flex items-center justify-center"
+              style={{
+                background:
+                  'radial-gradient(ellipse at 35% 30%, #ffe88a 0%, #daa520 30%, #8b6000 70%, #3d2b00 100%)',
+                boxShadow:
+                  'inset 4px 4px 14px rgba(255,255,200,0.6), inset -6px -6px 20px rgba(0,0,0,0.5)',
+                padding: 16,
+              }}
+            >
+              {/* Photo inside */}
               <div
-                className="w-[88%] h-[88%] rounded-full flex items-center justify-center"
+                className="w-full h-full rounded-full bg-cover bg-center"
                 style={{
-                  background: 'conic-gradient(from 90deg, #ffe066, #daa520, #b8860b, #ffd700, #ffec8b, #daa520, #ffe066)',
-                  padding: 12,
-                  boxShadow: 'inset 0 0 20px rgba(184,134,11,0.4)',
+                  backgroundImage: 'url(/images/gallery/img5.jpg)',
+                  boxShadow: 'inset 0 0 40px rgba(0,0,0,0.4)',
                 }}
-              >
-                {/* Couple image in center */}
-                <div
-                  className="w-full h-full rounded-full bg-cover bg-center shadow-2xl"
-                  style={{ backgroundImage: 'url(/images/gallery/img5.jpg)' }}
-                />
-              </div>
+              />
             </div>
           </div>
 
@@ -138,7 +156,7 @@ export default function ScheduleSection() {
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 12, repeat: Infinity, ease: 'linear' }}
-            className="absolute -top-5 left-1/2 -translate-x-1/2 text-2xl"
+            className="absolute -top-6 left-1/2 -translate-x-1/2 text-3xl"
           >
             💎
           </motion.div>
@@ -149,14 +167,13 @@ export default function ScheduleSection() {
               key={d}
               className="absolute w-3 h-3 rounded-full"
               style={{
-                top: `calc(50% + ${Math.sin((deg * Math.PI) / 180) * 155}px - 6px)`,
-                left: `calc(50% + ${Math.cos((deg * Math.PI) / 180) * 155}px - 6px)`,
-                background: 'radial-gradient(circle, #ffd700, #b8860b)',
-                opacity: 0.85,
-                boxShadow: '0 0 6px 2px rgba(255,215,0,0.6)',
+                top: `calc(50% + ${Math.sin((deg * Math.PI) / 180) * 195}px - 6px)`,
+                left: `calc(50% + ${Math.cos((deg * Math.PI) / 180) * 195}px - 6px)`,
+                background: 'radial-gradient(circle, #fffde0, #ffd700, #b8860b)',
+                boxShadow: '0 0 10px 4px rgba(255,215,0,0.7)',
               }}
-              animate={{ scale: [1, 1.8, 1], opacity: [0.85, 1, 0.85] }}
-              transition={{ duration: 2, delay: d * 0.25, repeat: Infinity }}
+              animate={{ scale: [1, 1.9, 1], opacity: [0.8, 1, 0.8] }}
+              transition={{ duration: 2.2, delay: d * 0.28, repeat: Infinity }}
             />
           ))}
         </motion.div>
