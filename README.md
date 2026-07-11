@@ -1,6 +1,6 @@
-# 🎧 DJ NOVA — Wedding & Event DJ Portfolio Website
+# Invitaion
 
-A professional, mobile-responsive DJ portfolio website built with Next.js 15, TypeScript, Tailwind CSS, and Framer Motion.
+A professional, mobile-responsive website built with Next.js 15, TypeScript, Tailwind CSS, and Framer Motion.
 
 ## 🗂 Folder Structure
 
