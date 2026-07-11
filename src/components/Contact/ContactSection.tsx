@@ -1,9 +1,15 @@
 'use client'
 
-import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 export default function ContactSection() {
+
+  const openGoogleForm = () => {
+    window.open(
+      'https://docs.google.com/forms/d/e/1FAIpQLSf-sgBdTiKkmx44NBS1Int5JOqQw4p5eqMBaLzDiwH9WT7zUQ/viewform?usp=publish-editor',
+      '_blank'
+    )
+  }
 
   return (
     <section
@@ -67,7 +73,7 @@ export default function ContactSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, margin: '-80px' }}
           transition={{ delay: 0.3, duration: 0.8 }}
-          className="rounded-2xl p-8 md:p-12 text-center"
+          className="rounded-2xl p-8 md:p-16 text-center"
           style={{
             background: 'rgba(255, 255, 255, 0.08)',
             backdropFilter: 'blur(16px)',
@@ -76,79 +82,69 @@ export default function ContactSection() {
             boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
           }}
         >
-          <form className="max-w-xl mx-auto space-y-8">
-
-            {/* Full Name */}
-            <div>
-              <label
-                className="block text-xs uppercase tracking-[3px] text-white/60 mb-3"
-                style={{ fontFamily: 'Lato, sans-serif' }}
-              >
-                Full Name(s)
-              </label>
-              <input
-                type="text"
-                placeholder="John & Jane Doe"
-                className="w-full bg-transparent border-b border-white/30 py-3 text-center focus:outline-none focus:border-amber-400 text-lg transition-colors text-white placeholder-white/30"
-                style={{ fontFamily: '"Playfair Display", serif' }}
-              />
-            </div>
-
-            {/* Attend? */}
-            <div className="pt-2">
-              <label
-                className="block text-xs uppercase tracking-[3px] text-white/60 mb-5"
-                style={{ fontFamily: 'Lato, sans-serif' }}
-              >
-                Will You Attend?
-              </label>
-              <div className="flex justify-center gap-8 flex-wrap">
-                <label className="flex items-center gap-3 cursor-pointer">
-                  <input type="radio" name="attend" className="w-4 h-4 accent-amber-400" />
-                  <span className="text-lg text-white" style={{ fontFamily: '"Playfair Display", serif' }}>
-                    Joyfully Accept
-                  </span>
-                </label>
-                <label className="flex items-center gap-3 cursor-pointer">
-                  <input type="radio" name="attend" className="w-4 h-4 accent-amber-400" />
-                  <span className="text-lg text-white" style={{ fontFamily: '"Playfair Display", serif' }}>
-                    Regretfully Decline
-                  </span>
-                </label>
-              </div>
-            </div>
+          <div className="max-w-xl mx-auto space-y-8">
 
             {/* Message */}
-            <div className="pt-2">
-              <label
-                className="block text-xs uppercase tracking-[3px] text-white/60 mb-3"
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: false, margin: '-80px' }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+              className="space-y-6"
+            >
+              <p
+                className="text-white/90 text-lg md:text-xl leading-relaxed"
+                style={{ fontFamily: '"Playfair Display", serif' }}
+              >
+                We humbly request your kind presence at our wedding celebration.
+              </p>
+              
+              <p
+                className="text-white/80 text-base md:text-lg leading-relaxed"
                 style={{ fontFamily: 'Lato, sans-serif' }}
               >
-                Message / Dietary Requirements
-              </label>
-              <textarea
-                rows={3}
-                className="w-full bg-transparent border-b border-white/30 py-3 text-center focus:outline-none focus:border-amber-400 text-lg transition-colors text-white placeholder-white/30 resize-none"
-                style={{ fontFamily: '"Playfair Display", serif' }}
-              />
-            </div>
+                Please fill out the RSVP form by clicking the button below so we can prepare a memorable celebration just for you and your loved ones.
+              </p>
 
-            {/* Submit Button */}
-            <div className="pt-4">
-              <button
-                type="button"
-                className="px-14 py-4 tracking-[3px] uppercase text-sm transition-all w-full md:w-auto rounded-full font-semibold"
+              <p
+                className="text-amber-300 text-sm md:text-base font-semibold tracking-wide"
+                style={{ fontFamily: 'Lato, sans-serif' }}
+              >
+                Kindly respond by October 1st, 2026
+              </p>
+            </motion.div>
+
+            {/* Confirm Attendance Button - Gold Transparent */}
+            <div className="pt-8">
+              <motion.button
+                whileHover={{ 
+                  scale: 1.08,
+                  boxShadow: '0 0 40px rgba(212,175,55,0.6), 0 0 60px rgba(255,215,0,0.4)',
+                }}
+                whileTap={{ scale: 0.95 }}
+                onClick={openGoogleForm}
+                className="px-12 md:px-20 py-5 md:py-6 tracking-[4px] uppercase text-sm md:text-base font-bold rounded-full transition-all inline-block border-2"
                 style={{
                   fontFamily: 'Lato, sans-serif',
-                  background: 'linear-gradient(135deg, #b8860b, #ffd700, #daa520)',
-                  color: '#1a1a1a',
-                  boxShadow: '0 0 20px rgba(255,215,0,0.3)',
+                  background: 'rgba(212, 175, 55, 0.2)',
+                  borderColor: '#ffd700',
+                  color: '#ffd700',
+                  boxShadow: '0 0 30px rgba(212,175,55,0.4), inset 0 0 20px rgba(255,215,0,0.1)',
+                  backdropFilter: 'blur(8px)',
+                  WebkitBackdropFilter: 'blur(8px)',
                 }}
               >
-                Send RSVP
-              </button>
+                Confirm Attendance
+              </motion.button>
+
+              <p
+                className="text-white/50 text-xs md:text-sm mt-6"
+                style={{ fontFamily: 'Lato, sans-serif' }}
+              >
+                Click the button to fill out your RSVP details
+              </p>
             </div>
-          </form>
+          </div>
         </motion.div>
       </div>
     </section>

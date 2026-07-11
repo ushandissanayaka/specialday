@@ -14,11 +14,23 @@ const ContactSection = dynamic(() => import('@/components/Contact/ContactSection
 const LocationSection = dynamic(() => import('@/components/Location/LocationSection'), { ssr: false })
 const CountdownSection = dynamic(() => import('@/components/Countdown/CountdownSection'), { ssr: false })
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
 export default function Home() {
   const [hasEntered, setHasEntered] = useState(false)
+  const [showIntroImage, setShowIntroImage] = useState(false)
+  const [showIntroText, setShowIntroText] = useState(false)
+
+  useEffect(() => {
+    const imageTimer = window.setTimeout(() => setShowIntroImage(true), 4000)
+    const textTimer = window.setTimeout(() => setShowIntroText(true), 5000)
+
+    return () => {
+      window.clearTimeout(imageTimer)
+      window.clearTimeout(textTimer)
+    }
+  }, [])
 
   return (
     <main className="relative bg-stone-50 text-stone-900 overflow-x-hidden">
@@ -46,16 +58,92 @@ export default function Home() {
             <div className="absolute inset-0 bg-black/30"></div>
 
             <div className="relative z-10 flex flex-col items-center justify-center text-center w-full h-full px-4 pt-10">
-              <motion.button
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.5 }}
-                whileHover={{ scale: 1.05, boxShadow: "0px 0px 15px rgba(234, 179, 8, 0.6)" }}
-                whileTap={{ scale: 0.95 }}
-                className="absolute bottom-12 bg-gradient-to-r from-yellow-600 via-yellow-500 to-yellow-600 text-white font-semibold text-lg md:text-xl px-12 py-3 rounded-full shadow-[0_4px_15px_rgba(0,0,0,0.5)] border border-yellow-400/50 uppercase tracking-widest transition-all duration-300"
-              >
-                Click
-              </motion.button>
+              <div className="w-full flex flex-col items-center justify-start pt-8 md:pt-12 px-4">
+                {showIntroText && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    className="flex flex-col items-center text-center"
+                  >
+                    {/* Cursive Names */}
+                    <p
+                      className="text-white text-6xl sm:text-7xl md:text-8xl lg:text-9xl tracking-widest drop-shadow-lg"
+                      style={{ fontFamily: '"Great Vibes", "Dancing Script", "Brush Script MT", cursive', fontWeight: 400, letterSpacing: '0.15em' }}
+                    >
+                      Kasuni & Dasun
+                    </p>
+
+                    {/* Gold Ampersand Icon Below */}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.6, delay: 0.3 }}
+                      className="mt-2 mb-6"
+                    >
+                      <svg className="w-12 h-12 md:w-16 md:h-16 mx-auto" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <text
+                          x="50"
+                          y="75"
+                          fontSize="80"
+                          fontFamily="'Great Vibes', cursive"
+                          fill="#D4AF37"
+                          textAnchor="middle"
+                          fontWeight="400"
+                        >
+                          &
+                        </text>
+                      </svg>
+                    </motion.div>
+
+                    {/* Loading Animation with Curved Button */}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.6, delay: 0.6 }}
+                      className="mb-8"
+                    >
+                      <div className="flex items-center justify-center gap-2">
+                        <div className="flex gap-1">
+                          <motion.div
+                            animate={{ scale: [1, 1.3, 1] }}
+                            transition={{ duration: 1, repeat: Infinity }}
+                            className="w-2 h-2 rounded-full bg-yellow-400"
+                          />
+                          <motion.div
+                            animate={{ scale: [1, 1.3, 1] }}
+                            transition={{ duration: 1, delay: 0.2, repeat: Infinity }}
+                            className="w-2 h-2 rounded-full bg-yellow-400"
+                          />
+                          <motion.div
+                            animate={{ scale: [1, 1.3, 1] }}
+                            transition={{ duration: 1, delay: 0.4, repeat: Infinity }}
+                            className="w-2 h-2 rounded-full bg-yellow-400"
+                          />
+                        </div>
+                        <span className="text-white text-xs md:text-sm ml-2 font-light">Loading...</span>
+                      </div>
+                    </motion.div>
+
+                    {/* Transparent Open Invitation Button */}
+                    <motion.button
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.9 }}
+                      whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(212, 175, 55, 0.4)' }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => setHasEntered(true)}
+                      className="relative mt-6 px-10 py-3 text-white text-lg md:text-xl font-semibold uppercase tracking-[0.15em] border-2 border-yellow-400 rounded-full bg-white/20 hover:bg-white/30 transition-all duration-300 cursor-pointer backdrop-blur-sm"
+                      style={{
+                        fontFamily: '"Montserrat", sans-serif',
+                        boxShadow: '0 0 20px rgba(212, 175, 55, 0.3)',
+                      }}
+                    >
+                      Open Invitation
+                    </motion.button>
+                  </motion.div>
+                )}
+              </div>
             </div>
           </motion.div>
         )}
@@ -63,7 +151,7 @@ export default function Home() {
 
       {/* Main Content */}
       <div style={{ opacity: hasEntered ? 1 : 0, transition: 'opacity 1s ease-in-out' }}>
-        <HeroSection />
+        <HeroSection isVisible={hasEntered} />
         <AboutSection />
         <GallerySection />
         <ScheduleSection />
