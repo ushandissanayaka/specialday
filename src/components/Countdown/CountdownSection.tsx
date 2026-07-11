@@ -32,11 +32,11 @@ function useCountdown() {
   return timeLeft
 }
 
-const FRAMES = [
-  { image: '/images/gallery/img3.jpg', label: 'Days',    key: 'days' },
-  { image: '/images/gallery/img6.jpg', label: 'Hours',   key: 'hours' },
-  { image: '/images/gallery/img9.jpg', label: 'Minutes', key: 'minutes' },
-  { image: '/images/gallery/img8.jpg', label: 'Seconds', key: 'seconds' },
+const UNITS = [
+  { label: 'Days',    key: 'days',    rotate: -30 },
+  { label: 'Hours',   key: 'hours',   rotate:  30 },
+  { label: 'Minutes', key: 'minutes', rotate: -30 },
+  { label: 'Seconds', key: 'seconds', rotate:  30 },
 ]
 
 export default function CountdownSection() {
@@ -111,117 +111,95 @@ export default function CountdownSection() {
           </div>
         </motion.div>
 
-        {/* Three Photo Frames with Countdown */}
-        <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center justify-center w-full max-w-5xl">
-          {FRAMES.map((frame, i) => {
-            const value = timeLeft[frame.key as keyof typeof timeLeft]
+        {/* Countdown Units with Butterfly Images */}
+        <div className="flex flex-wrap gap-10 md:gap-16 items-center justify-center w-full max-w-5xl">
+          {UNITS.map((unit, i) => {
+            const value = timeLeft[unit.key as keyof typeof timeLeft]
             const displayValue = String(value).padStart(2, '0')
 
             return (
               <motion.div
-                key={frame.key}
-                initial={{ opacity: 0, y: 120, scale: 0.85 }}
+                key={unit.key}
+                initial={{ opacity: 0, y: 80, scale: 0.8 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: false, margin: '-80px' }}
+                viewport={{ once: true, margin: '-80px' }}
                 transition={{
                   duration: 0.9,
-                  delay: 0.2 + i * 0.2,
+                  delay: 0.15 + i * 0.18,
                   type: 'spring',
                   stiffness: 55,
                   damping: 14,
                 }}
-                className="relative group"
+                className="relative flex flex-col items-center justify-center"
+                style={{ width: 260 }}
               >
-                {/* Photo Frame - Arched Window Shape */}
+                {/* Butterfly image rotated */}
                 <div
-                  className="relative overflow-hidden shadow-2xl"
                   style={{
-                    width: 280,
-                    height: 360,
-                    // Golden frame border
-                    padding: '10px',
-                    background: 'linear-gradient(135deg, #b8860b, #ffd700, #ffe066, #daa520, #b8860b)',
-                    borderRadius: '140px 140px 6px 6px',
-                    boxShadow: '0 0 30px rgba(184,134,11,0.5), 0 20px 60px rgba(0,0,0,0.6)',
+                    transform: `rotate(${unit.rotate}deg)`,
+                    width: 260,
+                    height: 260,
+                    position: 'relative',
+                    filter: 'drop-shadow(0 0 24px rgba(255,200,50,0.6))',
                   }}
                 >
-                  {/* Inner frame border accent */}
-                  <div
-                    className="relative w-full h-full overflow-hidden"
+                  <img
+                    src="/images/BackgroundImages/countdown.png"
+                    alt={unit.label}
                     style={{
-                      borderRadius: '135px 135px 2px 2px',
-                      outline: '2px solid rgba(255,215,0,0.4)',
-                      outlineOffset: '-4px',
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'contain',
+                      display: 'block',
                     }}
-                  >
-                    {/* Photo Background */}
-                    <div
-                      className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                      style={{ backgroundImage: `url(${frame.image})` }}
-                    />
-
-                    {/* Dark gradient over image for text */}
-                    <div
-                      className="absolute inset-0"
-                      style={{
-                        background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.1) 100%)',
-                      }}
-                    />
-
-                    {/* Window Panes Overlay */}
-                    <svg
-                      className="absolute inset-0 w-full h-full pointer-events-none"
-                      style={{ zIndex: 5 }}
-                      viewBox="0 0 260 340"
-                      preserveAspectRatio="none"
-                    >
-                      {/* Vertical center divider */}
-                      <line x1="130" y1="0" x2="130" y2="340" stroke="rgba(0,0,0,0.3)" strokeWidth="2" />
-                      
-                      {/* Horizontal center divider */}
-                      <line x1="0" y1="170" x2="260" y2="170" stroke="rgba(0,0,0,0.3)" strokeWidth="2" />
-                      
-                      {/* Upper arch grid - horizontal line across arch */}
-                      <line x1="0" y1="85" x2="260" y2="85" stroke="rgba(0,0,0,0.25)" strokeWidth="1.5" />
-                      
-                      {/* Upper left arch curve divider */}
-                      <path d="M 65 0 Q 65 85 65 85" stroke="rgba(0,0,0,0.25)" strokeWidth="1.5" fill="none" />
-                      
-                      {/* Upper right arch curve divider */}
-                      <path d="M 195 0 Q 195 85 195 85" stroke="rgba(0,0,0,0.25)" strokeWidth="1.5" fill="none" />
-                    </svg>
-
-                    {/* Countdown number + label */}
-                    <div className="absolute inset-0 flex flex-col items-center justify-end pb-8">
-                      <motion.span
-                        key={displayValue}
-                        initial={{ scale: 1.3, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        transition={{ duration: 0.3 }}
-                        className="text-white font-bold leading-none drop-shadow-2xl"
-                        style={{
-                          fontFamily: '"Playfair Display", serif',
-                          fontSize: '5.5rem',
-                          textShadow: '0 0 20px rgba(255,215,0,0.5)',
-                        }}
-                      >
-                        {displayValue}
-                      </motion.span>
-                      <span
-                        className="text-amber-300 uppercase tracking-[4px] text-sm mt-1"
-                        style={{ fontFamily: 'Lato, sans-serif' }}
-                      >
-                        {frame.label}
-                      </span>
-                    </div>
-                  </div>
+                  />
                 </div>
 
-                {/* Shadow below frame */}
+                {/* Number overlay — centered on the butterfly */}
                 <div
-                  className="absolute -bottom-3 left-1/2 -translate-x-1/2 rounded-full blur-md opacity-50"
-                  style={{ width: 220, height: 20, background: 'rgba(184,134,11,0.4)' }}
-                />
+                  style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    pointerEvents: 'none',
+                  }}
+                >
+                  <motion.span
+                    key={displayValue}
+                    initial={{ scale: 1.4, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                    style={{
+                      fontFamily: '"Playfair Display", serif',
+                      fontSize: 'clamp(3.8rem, 7vw, 5.5rem)',
+                      fontWeight: 700,
+                      color: '#ffffff',
+                      lineHeight: 1,
+                      textShadow: '0 2px 16px rgba(0,0,0,0.9), 0 0 24px rgba(255,200,50,0.6)',
+                    }}
+                  >
+                    {displayValue}
+                  </motion.span>
+
+                  <span
+                    style={{
+                      fontFamily: 'Lato, sans-serif',
+                      fontSize: 'clamp(0.85rem, 2.2vw, 1.1rem)',
+                      fontWeight: 700,
+                      letterSpacing: '4px',
+                      textTransform: 'uppercase',
+                      color: '#ffffff',
+                      marginTop: 4,
+                      textShadow: '0 1px 8px rgba(0,0,0,0.8)',
+                    }}
+                  >
+                    {unit.label}
+                  </span>
+                </div>
               </motion.div>
             )
           })}
