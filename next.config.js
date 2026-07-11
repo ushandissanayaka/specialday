@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
+  // Removed output: 'export' and images unoptimized to allow Vercel to properly build and optimize the site.
   trailingSlash: true,
-  images: { unoptimized: true }
 }
 module.exports = nextConfig
