@@ -132,7 +132,7 @@ export default function CountdownSection() {
                 }}
                 className="relative group"
               >
-                {/* Photo Frame */}
+                {/* Photo Frame - Arched Window Shape */}
                 <div
                   className="relative overflow-hidden shadow-2xl"
                   style={{
@@ -141,7 +141,7 @@ export default function CountdownSection() {
                     // Golden frame border
                     padding: '10px',
                     background: 'linear-gradient(135deg, #b8860b, #ffd700, #ffe066, #daa520, #b8860b)',
-                    borderRadius: '6px',
+                    borderRadius: '140px 140px 6px 6px',
                     boxShadow: '0 0 30px rgba(184,134,11,0.5), 0 20px 60px rgba(0,0,0,0.6)',
                   }}
                 >
@@ -149,7 +149,7 @@ export default function CountdownSection() {
                   <div
                     className="relative w-full h-full overflow-hidden"
                     style={{
-                      borderRadius: '3px',
+                      borderRadius: '135px 135px 2px 2px',
                       outline: '2px solid rgba(255,215,0,0.4)',
                       outlineOffset: '-4px',
                     }}
@@ -167,6 +167,29 @@ export default function CountdownSection() {
                         background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.1) 100%)',
                       }}
                     />
+
+                    {/* Window Panes Overlay */}
+                    <svg
+                      className="absolute inset-0 w-full h-full pointer-events-none"
+                      style={{ zIndex: 5 }}
+                      viewBox="0 0 260 340"
+                      preserveAspectRatio="none"
+                    >
+                      {/* Vertical center divider */}
+                      <line x1="130" y1="0" x2="130" y2="340" stroke="rgba(0,0,0,0.3)" strokeWidth="2" />
+                      
+                      {/* Horizontal center divider */}
+                      <line x1="0" y1="170" x2="260" y2="170" stroke="rgba(0,0,0,0.3)" strokeWidth="2" />
+                      
+                      {/* Upper arch grid - horizontal line across arch */}
+                      <line x1="0" y1="85" x2="260" y2="85" stroke="rgba(0,0,0,0.25)" strokeWidth="1.5" />
+                      
+                      {/* Upper left arch curve divider */}
+                      <path d="M 65 0 Q 65 85 65 85" stroke="rgba(0,0,0,0.25)" strokeWidth="1.5" fill="none" />
+                      
+                      {/* Upper right arch curve divider */}
+                      <path d="M 195 0 Q 195 85 195 85" stroke="rgba(0,0,0,0.25)" strokeWidth="1.5" fill="none" />
+                    </svg>
 
                     {/* Countdown number + label */}
                     <div className="absolute inset-0 flex flex-col items-center justify-end pb-8">
