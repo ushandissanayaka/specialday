@@ -16,16 +16,16 @@ export default function ContactSection() {
       id="rsvp"
       className="relative py-24 md:py-36 overflow-hidden"
     >
-      {/* Background: desktop = fixed parallax | mobile = scroll with mobile image */}
+      {/* Background: desktop uses back02.png | mobile uses moblile02.png */}
       {/* Desktop layer */}
       <div
         className="absolute inset-0 hidden md:block"
         style={{
           backgroundImage: "url('/images/BackgroundImages/back02.png')",
           backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundPosition: 'center center',
           backgroundRepeat: 'no-repeat',
-          backgroundAttachment: 'fixed',
+          backgroundAttachment: 'scroll',
         }}
       />
       {/* Mobile layer — moblile02.png sized for phone screens */}

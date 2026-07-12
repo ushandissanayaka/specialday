@@ -21,19 +21,19 @@ export default function ScheduleSection() {
       className="relative py-24 md:py-36 overflow-hidden"
       style={{ fontFamily: '"Playfair Display", serif' }}
     >
-      {/* Background: desktop = fixed parallax | mobile = scroll with mobile image */}
+      {/* Background: desktop uses gallery image | mobile uses mobile01.png */}
       {/* Desktop layer */}
       <div
         className="absolute inset-0 z-0 hidden md:block"
         style={{
           backgroundImage: "url('/images/BackgroundImages/gallarybackground.png')",
           backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundPosition: 'center center',
           backgroundRepeat: 'no-repeat',
-          backgroundAttachment: 'fixed',
+          backgroundAttachment: 'scroll',
         }}
       />
-      {/* Mobile layer — mobile01.png fits exactly on phone screens */}
+      {/* Mobile layer — mobile01.png fits phone screens */}
       <div
         className="absolute inset-0 z-0 block md:hidden"
         style={{
