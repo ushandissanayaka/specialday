@@ -26,15 +26,10 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="relative w-full min-h-screen flex flex-col md:flex-row overflow-hidden bg-purple-50"
+      className="relative w-full min-h-screen flex flex-col md:flex-row overflow-hidden"
     >
       {/* Left side: Text Content with back01.png */}
       <div className="w-full md:w-1/2 flex flex-col justify-center items-center py-20 px-6 md:px-12 relative z-10 text-white min-h-[50vh]">
-        {/* Left background image */}
-        <div
-          className="absolute inset-0 w-full h-full object-cover z-[-2]"
-          style={{ backgroundImage: 'url(/images/BackgroundImages/back01.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}
-        />
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/60 z-[-1]" />
 

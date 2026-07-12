@@ -13,6 +13,7 @@ const ScheduleSection = dynamic(() => import('@/components/Schedule/ScheduleSect
 const ContactSection = dynamic(() => import('@/components/Contact/ContactSection'), { ssr: false })
 const LocationSection = dynamic(() => import('@/components/Location/LocationSection'), { ssr: false })
 const CountdownSection = dynamic(() => import('@/components/Countdown/CountdownSection'), { ssr: false })
+const WeddingDetailsSection = dynamic(() => import('@/components/WeddingDetails/WeddingDetailsSection'), { ssr: false })
 
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -33,8 +34,8 @@ export default function Home() {
   }, [])
 
   return (
-    <main className="relative bg-stone-50 text-stone-900 overflow-x-hidden">
-      
+    <main className="relative text-stone-900 overflow-x-hidden bg-transparent">
+
       {/* Splash Screen Overlay */}
       <AnimatePresence>
         {!hasEntered && (
@@ -54,7 +55,7 @@ export default function Home() {
             >
               <source src="/videos/startingVideo.mp4" type="video/mp4" />
             </video>
-            
+
             <div className="absolute inset-0 bg-black/30"></div>
 
             <div className="relative z-10 flex flex-col items-center justify-center text-center w-full h-full px-4 pt-10">
@@ -152,14 +153,30 @@ export default function Home() {
       {/* Main Content */}
       <div style={{ opacity: hasEntered ? 1 : 0, transition: 'opacity 1s ease-in-out' }}>
         <HeroSection isVisible={hasEntered} />
-        <AboutSection />
-        <GallerySection />
-        <ScheduleSection />
 
-        <LocationSection />
-        <CountdownSection />
-        <ContactSection />
-        <Footer />
+        {/* Global Fixed Background for all sections below Hero */}
+        <div className="fixed inset-0 z-[-10] w-full h-full pointer-events-none">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: "url('/images/BackgroundImages/back04.png')",
+              backgroundSize: 'cover',
+              backgroundPosition: 'center center',
+              backgroundRepeat: 'no-repeat',
+            }}
+          />
+        </div>
+
+        <div className="relative z-0">
+          <WeddingDetailsSection />
+          <AboutSection />
+          <GallerySection />
+          <ScheduleSection />
+          <LocationSection />
+          <CountdownSection />
+          <ContactSection />
+          <Footer />
+        </div>
       </div>
     </main>
   )
