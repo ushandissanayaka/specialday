@@ -9,15 +9,27 @@ export default function Footer() {
   return (
     <footer className="relative py-20 px-6 text-center overflow-hidden">
 
-      {/* Fixed background — same as countdown & RSVP, seamless scroll */}
+      {/* Background: desktop = fixed parallax | mobile = scroll with mobile image */}
+      {/* Desktop layer */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 hidden md:block"
         style={{
           backgroundImage: "url('/images/BackgroundImages/back02.png')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
           backgroundAttachment: 'fixed',
+        }}
+      />
+      {/* Mobile layer — moblile02.png sized for phone screens */}
+      <div
+        className="absolute inset-0 block md:hidden"
+        style={{
+          backgroundImage: "url('/images/BackgroundImages/moblile02.png')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center center',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'scroll',
         }}
       />
       {/* Dark overlay */}

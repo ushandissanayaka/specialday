@@ -36,15 +36,27 @@ export default function GallerySection() {
       id="gallery"
       className="relative py-20 md:py-32 overflow-hidden"
     >
-      {/* Fixed Background */}
+      {/* Background: desktop = fixed parallax | mobile = scroll with mobile image */}
+      {/* Desktop layer (hidden on mobile via CSS) */}
       <div
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 hidden md:block"
         style={{
           backgroundImage: "url('/images/BackgroundImages/gallarybackground.png')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
           backgroundAttachment: 'fixed',
+        }}
+      />
+      {/* Mobile layer (hidden on desktop) — uses mobile01.png, scroll so it fits the screen */}
+      <div
+        className="absolute inset-0 z-0 block md:hidden"
+        style={{
+          backgroundImage: "url('/images/BackgroundImages/mobile01.png')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center center',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'scroll',
         }}
       />
 

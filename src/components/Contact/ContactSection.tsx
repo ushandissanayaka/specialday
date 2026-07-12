@@ -16,15 +16,27 @@ export default function ContactSection() {
       id="rsvp"
       className="relative py-24 md:py-36 overflow-hidden"
     >
-      {/* Same fixed background as countdown — seamless scroll */}
+      {/* Background: desktop = fixed parallax | mobile = scroll with mobile image */}
+      {/* Desktop layer */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 hidden md:block"
         style={{
           backgroundImage: "url('/images/BackgroundImages/back02.png')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
           backgroundAttachment: 'fixed',
+        }}
+      />
+      {/* Mobile layer — moblile02.png sized for phone screens */}
+      <div
+        className="absolute inset-0 block md:hidden"
+        style={{
+          backgroundImage: "url('/images/BackgroundImages/moblile02.png')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center center',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'scroll',
         }}
       />
       {/* Soft dark overlay */}
