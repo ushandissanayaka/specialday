@@ -31,13 +31,13 @@ export default function AboutSection() {
       {/* Left side: Text Content with back01.png */}
       <div className="w-full md:w-1/2 flex flex-col justify-center items-center py-20 px-6 md:px-12 relative z-10 text-white min-h-[50vh]">
         {/* Left background image */}
-        <div 
+        <div
           className="absolute inset-0 w-full h-full object-cover z-[-2]"
           style={{ backgroundImage: 'url(/images/BackgroundImages/back01.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}
         />
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/60 z-[-1]" />
-        
+
         <motion.h3
           custom={0}
           initial="hidden"
@@ -176,9 +176,9 @@ export default function AboutSection() {
           className="w-full h-full absolute inset-0"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img 
-            src="/images/BackgroundImages/back03.png" 
-            alt="Wedding Background" 
+          <img
+            src="/images/BackgroundImages/back03.png"
+            alt="Wedding Background"
             className="w-full h-full object-cover"
           />
         </motion.div>

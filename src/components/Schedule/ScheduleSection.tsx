@@ -46,7 +46,7 @@ export default function ScheduleSection() {
         <motion.span
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, margin: '-100px' }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.6 }}
           className="block text-xs tracking-[6px] uppercase mb-3 text-stone-900 font-bold"
           style={{ fontFamily: 'Lato, sans-serif' }}
@@ -56,7 +56,7 @@ export default function ScheduleSection() {
         <motion.h2
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: false, margin: '-100px' }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.7, delay: 0.1 }}
           className="font-semibold text-black drop-shadow-sm"
           style={{ fontSize: 'clamp(2.2rem, 5vw, 3.8rem)' }}
@@ -75,7 +75,7 @@ export default function ScheduleSection() {
               key={i}
               initial={{ opacity: 0, x: -120 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: false, margin: '-100px' }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.8, delay: 0.2 + i * 0.2, type: 'spring', stiffness: 60 }}
               className="flex flex-col items-end text-right"
             >
@@ -103,7 +103,7 @@ export default function ScheduleSection() {
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 1.2, delay: 0.3, type: 'spring', stiffness: 50, damping: 14 }}
           className="relative flex-shrink-0 flex items-center justify-center"
-          style={{ width: 400, height: 400 }}
+          style={{ width: 'clamp(280px, 90vw, 400px)', height: 'clamp(280px, 90vw, 400px)' }}
         >
           {/* 3D outer glow halo */}
           <div
@@ -185,7 +185,7 @@ export default function ScheduleSection() {
               key={i}
               initial={{ opacity: 0, x: 120 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: false, margin: '-100px' }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.8, delay: 0.2 + i * 0.2, type: 'spring', stiffness: 60 }}
               className="flex flex-col items-start text-left"
             >

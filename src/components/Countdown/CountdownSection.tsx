@@ -33,10 +33,10 @@ function useCountdown() {
 }
 
 const UNITS = [
-  { label: 'Days',    key: 'days',    rotate: -30 },
-  { label: 'Hours',   key: 'hours',   rotate:  30 },
+  { label: 'Days', key: 'days', rotate: -30 },
+  { label: 'Hours', key: 'hours', rotate: 30 },
   { label: 'Minutes', key: 'minutes', rotate: -30 },
-  { label: 'Seconds', key: 'seconds', rotate:  30 },
+  { label: 'Seconds', key: 'seconds', rotate: 30 },
 ]
 
 export default function CountdownSection() {
