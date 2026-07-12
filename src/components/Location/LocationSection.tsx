@@ -8,16 +8,19 @@ export default function LocationSection() {
   return (
     <section
       id="location"
-      className="relative bg-white"
+      className="relative bg-transparent"
       style={{ fontFamily: '"Playfair Display", serif' }}
     >
+      {/* Dark overlay for global background visibility */}
+      <div className="absolute inset-0 bg-black/65 z-0" />
+
       {/* Section Title */}
       <motion.div
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, margin: '-100px' }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
-        className="text-center py-10 px-6 bg-white"
+        className="relative z-10 text-center py-10 px-6"
       >
         <span
           className="block text-xs tracking-[6px] uppercase text-amber-500 mb-3"
@@ -26,7 +29,7 @@ export default function LocationSection() {
           — Find Us Here —
         </span>
         <h2
-          className="font-normal text-stone-800"
+          className="font-normal text-white drop-shadow-md"
           style={{ fontSize: 'clamp(2.2rem, 5vw, 3.8rem)' }}
         >
           Wedding Location

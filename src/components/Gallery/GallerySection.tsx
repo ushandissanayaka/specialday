@@ -36,32 +36,10 @@ export default function GallerySection() {
       id="gallery"
       className="relative py-20 md:py-32 overflow-hidden"
     >
-      {/* Background: desktop uses gallery image | mobile uses mobile01.png */}
-      {/* Desktop layer */}
-      <div
-        className="absolute inset-0 z-0 hidden md:block"
-        style={{
-          backgroundImage: "url('/images/BackgroundImages/gallarybackground.png')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center center',
-          backgroundRepeat: 'no-repeat',
-          backgroundAttachment: 'scroll',
-        }}
-      />
-      {/* Mobile layer — mobile01.png fits phone screens */}
-      <div
-        className="absolute inset-0 z-0 block md:hidden"
-        style={{
-          backgroundImage: "url('/images/BackgroundImages/mobile01.png')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center center',
-          backgroundRepeat: 'no-repeat',
-          backgroundAttachment: 'scroll',
-        }}
-      />
+      {/* Background removed, global background will show through */}
 
-      {/* Optional soft overlay to ensure text readability */}
-      <div className="absolute inset-0 bg-white/70 z-0" />
+      {/* Dark overlay to ensure text readability against global background */}
+      <div className="absolute inset-0 bg-black/65 z-0" />
 
       <div className="relative z-10">
         {/* Header */}
@@ -69,9 +47,9 @@ export default function GallerySection() {
           <motion.span
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ once: false, amount: 0.1 }}
             transition={{ duration: 0.5 }}
-            className="text-xs tracking-[6px] uppercase mb-4 block text-stone-500"
+            className="text-xs tracking-[6px] uppercase mb-4 block text-amber-400 font-bold"
             style={{ fontFamily: 'Lato, sans-serif' }}
           >
             — Captured Moments —
@@ -79,13 +57,13 @@ export default function GallerySection() {
           <motion.h2
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-normal"
+            viewport={{ once: false, amount: 0.1 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="font-semibold text-white drop-shadow-md"
             style={{
               fontFamily: '"Playfair Display", serif',
               fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-              color: '#1c1917',
+              color: '#ffffff',
             }}
           >
             Photo Gallery
@@ -104,7 +82,7 @@ export default function GallerySection() {
                   key={i}
                   initial={getInitialPosition(i)}
                   whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
-                  viewport={{ once: true, amount: 0.1 }}
+                  viewport={{ once: false, amount: 0.1 }}
                   transition={{
                     type: 'spring',
                     damping: 18,

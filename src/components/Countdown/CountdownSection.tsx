@@ -47,29 +47,7 @@ export default function CountdownSection() {
       id="countdown"
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden py-20"
     >
-      {/* Background: desktop uses back02.png | mobile uses moblile02.png */}
-      {/* Desktop layer */}
-      <div
-        className="absolute inset-0 hidden md:block"
-        style={{
-          backgroundImage: "url('/images/BackgroundImages/back02.png')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center center',
-          backgroundRepeat: 'no-repeat',
-          backgroundAttachment: 'scroll',
-        }}
-      />
-      {/* Mobile layer — moblile02.png sized for phone screens */}
-      <div
-        className="absolute inset-0 block md:hidden"
-        style={{
-          backgroundImage: "url('/images/BackgroundImages/moblile02.png')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center center',
-          backgroundRepeat: 'no-repeat',
-          backgroundAttachment: 'scroll',
-        }}
-      />
+      {/* Background removed, global background will show through */}
       {/* Dark overlay for readability */}
       <div className="absolute inset-0 bg-black/55" />
 
@@ -134,7 +112,7 @@ export default function CountdownSection() {
                 key={unit.key}
                 initial={{ opacity: 0, y: 80, scale: 0.8 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, margin: '-80px' }}
+                viewport={{ once: false, margin: '-80px' }}
                 transition={{
                   duration: 0.9,
                   delay: 0.15 + i * 0.18,

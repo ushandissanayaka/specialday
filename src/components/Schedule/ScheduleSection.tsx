@@ -21,202 +21,89 @@ export default function ScheduleSection() {
       className="relative py-24 md:py-36 overflow-hidden"
       style={{ fontFamily: '"Playfair Display", serif' }}
     >
-      {/* Background: desktop uses gallery image | mobile uses mobile01.png */}
-      {/* Desktop layer */}
-      <div
-        className="absolute inset-0 z-0 hidden md:block"
-        style={{
-          backgroundImage: "url('/images/BackgroundImages/gallarybackground.png')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center center',
-          backgroundRepeat: 'no-repeat',
-          backgroundAttachment: 'scroll',
-        }}
-      />
-      {/* Mobile layer — mobile01.png fits phone screens */}
-      <div
-        className="absolute inset-0 z-0 block md:hidden"
-        style={{
-          backgroundImage: "url('/images/BackgroundImages/mobile01.png')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center center',
-          backgroundRepeat: 'no-repeat',
-          backgroundAttachment: 'scroll',
-        }}
-      />
+      {/* Background removed, global background will show through */}
 
-      {/* Optional soft overlay to ensure text readability */}
-      <div className="absolute inset-0 bg-white/70 z-0" />
+      {/* Dark overlay to ensure text readability against global background */}
+      <div className="absolute inset-0 bg-black/65 z-0" />
       {/* Background decorative elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-10 left-10 w-72 h-72 rounded-full bg-purple-50 blur-3xl opacity-60" />
         <div className="absolute bottom-10 right-10 w-72 h-72 rounded-full bg-purple-50 blur-3xl opacity-60" />
       </div>
 
-      {/* Header */}
-      <div className="text-center mb-16 px-6 relative z-10">
-        <motion.span
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.6 }}
-          className="block text-xs tracking-[6px] uppercase mb-3 text-stone-900 font-bold"
-          style={{ fontFamily: 'Lato, sans-serif' }}
-        >
-          — The Big Day —
-        </motion.span>
-        <motion.h2
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="font-semibold text-black drop-shadow-sm"
-          style={{ fontSize: 'clamp(2.2rem, 5vw, 3.8rem)' }}
-        >
-          📖 Event Schedule
-        </motion.h2>
-      </div>
-
-      {/* Main Content: Left Schedule | Ring | Right Schedule */}
-      <div className="relative z-10 max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-0">
-
-        {/* LEFT SCHEDULE */}
-        <div className="flex-1 flex flex-col gap-10 md:pr-12">
-          {SCHEDULE_LEFT.map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, x: -120 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.1 }}
-              transition={{ duration: 0.8, delay: 0.2 + i * 0.2, type: 'spring', stiffness: 60 }}
-              className="flex flex-col items-end text-right"
-            >
-              <div className="flex items-center gap-3 mb-1">
-                <span className="text-2xl">{item.icon}</span>
-                <span
-                  className="text-base md:text-lg tracking-[4px] uppercase text-amber-900 font-extrabold"
-                  style={{ fontFamily: 'Lato, sans-serif' }}
-                >
-                  {item.time}
-                </span>
-              </div>
-              <h3 className="text-3xl md:text-4xl font-medium text-black mb-1">{item.event}</h3>
-              <p className="text-base text-stone-900 font-semibold italic" style={{ fontFamily: 'Lato, sans-serif' }}>{item.desc}</p>
-              {/* Connector line */}
-              <div className="mt-4 h-px w-32 bg-gradient-to-l from-amber-400 to-transparent self-end" />
-            </motion.div>
-          ))}
-        </div>
-
-        {/* CENTER — 3D Gold Medallion Frame */}
+      {/* Single Large Transparent Card for the entire schedule */}
+      <div className="relative z-10 max-w-5xl mx-auto px-4 md:px-12">
         <motion.div
-          initial={{ opacity: 0, scale: 0.3, rotate: -30 }}
-          whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 1.2, delay: 0.3, type: 'spring', stiffness: 50, damping: 14 }}
-          className="relative flex-shrink-0 flex items-center justify-center"
-          style={{ width: 'clamp(280px, 90vw, 400px)', height: 'clamp(280px, 90vw, 400px)' }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.1 }}
+          transition={{ duration: 0.8 }}
+          className="rounded-3xl p-8 md:p-16 flex flex-col transition-all duration-300"
+          style={{
+            background: 'rgba(255,255,255,0.75)',
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)',
+            border: '1px solid rgba(255,255,255,0.4)',
+            boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
+          }}
         >
-          {/* 3D outer glow halo */}
-          <div
-            className="absolute inset-0 rounded-full"
-            style={{
-              boxShadow:
-                '0 0 80px 30px rgba(218,165,32,0.35), 0 0 150px 50px rgba(255,215,0,0.12)',
-            }}
-          />
-
-          {/* 3D medallion border — single ring with depth */}
-          <div
-            className="absolute inset-0 rounded-full"
-            style={{
-              background:
-                'radial-gradient(ellipse at 30% 25%, #fff7a1 0%, #ffd700 20%, #c8960c 50%, #7a5800 75%, #3d2b00 100%)',
-              boxShadow:
-                /* top-left rim highlight */
-                'inset 6px 6px 18px rgba(255,255,180,0.8),' +
-                /* bottom-right depth shadow */
-                'inset -8px -8px 24px rgba(0,0,0,0.55),' +
-                /* outer drop shadow for lift */
-                '0 24px 70px rgba(0,0,0,0.45), 0 6px 20px rgba(184,134,11,0.6)',
-              padding: 24, // thicker ring
-            }}
-          >
-            {/* Inner inset shadow ring for depth */}
-            <div
-              className="w-full h-full rounded-full flex items-center justify-center"
-              style={{
-                background:
-                  'radial-gradient(ellipse at 35% 30%, #ffe88a 0%, #daa520 30%, #8b6000 70%, #3d2b00 100%)',
-                boxShadow:
-                  'inset 4px 4px 14px rgba(255,255,200,0.6), inset -6px -6px 20px rgba(0,0,0,0.5)',
-                padding: 16,
-              }}
+          {/* Header */}
+          <div className="text-center mb-12">
+            <span
+              className="block text-xs tracking-[6px] uppercase mb-3 text-amber-700 font-bold"
+              style={{ fontFamily: 'Lato, sans-serif' }}
             >
-              {/* Photo inside */}
-              <div
-                className="w-full h-full rounded-full bg-cover bg-center"
-                style={{
-                  backgroundImage: 'url(/images/gallery/img5.jpg)',
-                  boxShadow: 'inset 0 0 40px rgba(0,0,0,0.4)',
-                }}
-              />
-            </div>
+              — The Big Day —
+            </span>
+            <h2
+              className="font-semibold text-stone-900 drop-shadow-sm"
+              style={{ fontSize: 'clamp(2.2rem, 5vw, 3.8rem)' }}
+            >
+              📖 Event Schedule
+            </h2>
           </div>
 
-          {/* Sparkling diamond at top */}
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 12, repeat: Infinity, ease: 'linear' }}
-            className="absolute -top-6 left-1/2 -translate-x-1/2 text-3xl"
-          >
-            💎
-          </motion.div>
+          {/* Main Content: Left Schedule | Right Schedule */}
+          <div className="flex flex-col md:flex-row justify-center gap-12 md:gap-20">
+            {/* LEFT SCHEDULE */}
+            <div className="flex-1 flex flex-col gap-10">
+              {SCHEDULE_LEFT.map((item, i) => (
+                <div key={i} className="flex flex-col items-center md:items-end text-center md:text-right">
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className="text-2xl">{item.icon}</span>
+                    <span
+                      className="text-base md:text-lg tracking-[4px] uppercase text-amber-800 font-extrabold"
+                      style={{ fontFamily: 'Lato, sans-serif' }}
+                    >
+                      {item.time}
+                    </span>
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-bold text-stone-900 mb-2">{item.event}</h3>
+                  <p className="text-sm md:text-base text-stone-700 font-medium italic" style={{ fontFamily: 'Lato, sans-serif' }}>{item.desc}</p>
+                </div>
+              ))}
+            </div>
 
-          {/* Glitter dots around ring */}
-          {[0, 45, 90, 135, 180, 225, 270, 315].map((deg, d) => (
-            <motion.div
-              key={d}
-              className="absolute w-3 h-3 rounded-full"
-              style={{
-                top: `calc(50% + ${Math.sin((deg * Math.PI) / 180) * 195}px - 6px)`,
-                left: `calc(50% + ${Math.cos((deg * Math.PI) / 180) * 195}px - 6px)`,
-                background: 'radial-gradient(circle, #fffde0, #ffd700, #b8860b)',
-                boxShadow: '0 0 10px 4px rgba(255,215,0,0.7)',
-              }}
-              animate={{ scale: [1, 1.9, 1], opacity: [0.8, 1, 0.8] }}
-              transition={{ duration: 2.2, delay: d * 0.28, repeat: Infinity }}
-            />
-          ))}
+            {/* RIGHT SCHEDULE */}
+            <div className="flex-1 flex flex-col gap-10">
+              {SCHEDULE_RIGHT.map((item, i) => (
+                <div key={i} className="flex flex-col items-center md:items-start text-center md:text-left">
+                  <div className="flex items-center gap-3 mb-2">
+                    <span
+                      className="text-base md:text-lg tracking-[4px] uppercase text-amber-800 font-extrabold"
+                      style={{ fontFamily: 'Lato, sans-serif' }}
+                    >
+                      {item.time}
+                    </span>
+                    <span className="text-2xl">{item.icon}</span>
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-bold text-stone-900 mb-2">{item.event}</h3>
+                  <p className="text-sm md:text-base text-stone-700 font-medium italic" style={{ fontFamily: 'Lato, sans-serif' }}>{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </motion.div>
-
-        {/* RIGHT SCHEDULE */}
-        <div className="flex-1 flex flex-col gap-10 md:pl-12">
-          {SCHEDULE_RIGHT.map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, x: 120 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.1 }}
-              transition={{ duration: 0.8, delay: 0.2 + i * 0.2, type: 'spring', stiffness: 60 }}
-              className="flex flex-col items-start text-left"
-            >
-              <div className="flex items-center gap-3 mb-1">
-                <span
-                  className="text-base md:text-lg tracking-[4px] uppercase text-amber-900 font-extrabold"
-                  style={{ fontFamily: 'Lato, sans-serif' }}
-                >
-                  {item.time}
-                </span>
-                <span className="text-2xl">{item.icon}</span>
-              </div>
-              <h3 className="text-3xl md:text-4xl font-medium text-black mb-1">{item.event}</h3>
-              <p className="text-base text-stone-900 font-semibold italic" style={{ fontFamily: 'Lato, sans-serif' }}>{item.desc}</p>
-              {/* Connector line */}
-              <div className="mt-4 h-px w-32 bg-gradient-to-r from-amber-400 to-transparent self-start" />
-            </motion.div>
-          ))}
-        </div>
       </div>
     </section>
   )
