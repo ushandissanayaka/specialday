@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import '../styles/globals.css'
+import MusicPlayer from '@/components/MusicPlayer'
 
 export const metadata: Metadata = {
   title: 'invitation',
@@ -27,6 +28,7 @@ export default function RootLayout({
       </head>
       <body className="bg-black text-white overflow-x-hidden">
         {children}
+        <MusicPlayer />
       </body>
     </html>
   )
