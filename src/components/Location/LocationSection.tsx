@@ -12,7 +12,7 @@ export default function LocationSection() {
       style={{ fontFamily: '"Playfair Display", serif' }}
     >
       {/* Dark overlay for global background visibility */}
-      <div className="absolute inset-0 bg-black/65 z-0" />
+      <div className="absolute inset-0 bg-black/65 z-0 pointer-events-none" />
 
       {/* Section Title */}
       <motion.div
@@ -47,14 +47,14 @@ export default function LocationSection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, margin: '-100px' }}
         transition={{ duration: 0.9, delay: 0.3 }}
-        className="block md:hidden w-full"
+        className="block md:hidden w-full relative z-20 pointer-events-auto"
         style={{ height: '280px' }}
       >
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.2!2d79.910614!3d6.7824621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2457ad82eca25%3A0x904aaafa62ba3bc8!2sParadise%20Inn%20Bolgoda!5e0!3m2!1sen!2slk!4v1700000000001!5m2!1sen!2slk"
+          src="https://maps.google.com/maps?q=Bolgoda%20Paradise%20Hotel%20Sri%20Lanka&z=16&output=embed"
           width="100%"
           height="100%"
-          style={{ border: 0, display: 'block' }}
+          style={{ border: 0, display: 'block', touchAction: 'auto', backgroundColor: 'transparent' }}
           allowFullScreen={true}
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
@@ -115,14 +115,14 @@ export default function LocationSection() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: false, margin: '-100px' }}
           transition={{ duration: 0.9, delay: 0.6, type: 'spring', stiffness: 60 }}
-          className="hidden md:block absolute z-10 rounded-2xl overflow-hidden shadow-2xl border-2 border-white/50 top-6 left-1/2 -translate-x-1/2"
+          className="hidden md:block absolute z-20 rounded-2xl overflow-hidden shadow-2xl border-2 border-white/50 top-6 left-1/2 -translate-x-1/2 pointer-events-auto"
           style={{ width: 500, height: 320 }}
         >
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.2!2d79.910614!3d6.7824621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2457ad82eca25%3A0x904aaafa62ba3bc8!2sParadise%20Inn%20Bolgoda!5e0!3m2!1sen!2slk!4v1700000000001!5m2!1sen!2slk"
+            src="https://maps.google.com/maps?q=Bolgoda%20Paradise%20Hotel%20Sri%20Lanka&z=16&output=embed"
             width="100%"
             height="100%"
-            style={{ border: 0 }}
+            style={{ border: 0, touchAction: 'auto', backgroundColor: 'transparent' }}
             allowFullScreen={true}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
