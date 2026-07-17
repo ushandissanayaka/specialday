@@ -18,7 +18,7 @@ export default function ContactSection() {
     >
       {/* Background removed, global background will show through */}
       {/* Soft dark overlay */}
-      <div className="absolute inset-0 bg-black/50" />
+      <div className="absolute inset-0 bg-black/50 z-0" />
 
       {/* Content */}
       <div className="relative z-10 max-w-2xl mx-auto px-6 md:px-12">
