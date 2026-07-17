@@ -143,6 +143,30 @@ export default function CountdownSection() {
                       display: 'block',
                     }}
                   />
+                  {/* Gold round frame: 70% gold, 30% transparent */}
+                  <svg
+                    width="100%"
+                    height="100%"
+                    viewBox="0 0 260 260"
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      pointerEvents: 'none',
+                    }}
+                  >
+                    <circle
+                      cx="130"
+                      cy="130"
+                      r="124"
+                      fill="none"
+                      stroke="#d4af37"
+                      strokeWidth="4"
+                      style={{
+                        filter: 'drop-shadow(0 0 12px rgba(255, 215, 0, 0.8)) drop-shadow(0 0 24px rgba(212, 175, 55, 0.6))',
+                      }}
+                    />
+                  </svg>
                 </div>
 
                 {/* Number overlay — centered on the butterfly */}
