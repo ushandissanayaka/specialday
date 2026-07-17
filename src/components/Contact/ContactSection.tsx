@@ -1,15 +1,10 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 export default function ContactSection() {
-
-  const openGoogleForm = () => {
-    window.open(
-      'https://docs.google.com/forms/d/e/1FAIpQLSf-sgBdTiKkmx44NBS1Int5JOqQw4p5eqMBaLzDiwH9WT7zUQ/viewform?usp=publish-editor',
-      '_blank'
-    )
-  }
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   return (
     <section
@@ -112,7 +107,7 @@ export default function ContactSection() {
                   boxShadow: '0 0 40px rgba(212,175,55,0.6), 0 0 60px rgba(255,215,0,0.4)',
                 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={openGoogleForm}
+                onClick={() => setIsModalOpen(true)}
                 className="px-12 md:px-20 py-5 md:py-6 tracking-[4px] uppercase text-sm md:text-base font-bold rounded-full transition-all inline-block border-2"
                 style={{
                   fontFamily: 'Lato, sans-serif',
@@ -137,6 +132,49 @@ export default function ContactSection() {
           </div>
         </motion.div>
       </div>
+
+      {/* RSVP Modal */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-6 bg-black/80 backdrop-blur-sm"
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="relative w-full max-w-4xl bg-white rounded-2xl overflow-hidden shadow-2xl h-[85vh] flex flex-col"
+            >
+              <div className="flex justify-between items-center p-4 bg-amber-50 border-b border-amber-100">
+                <h3 className="font-semibold text-amber-900 tracking-wider uppercase text-sm" style={{ fontFamily: 'Lato, sans-serif' }}>
+                  RSVP
+                </h3>
+                <button
+                  onClick={() => setIsModalOpen(false)}
+                  className="text-amber-700 hover:text-amber-900 transition-colors p-2"
+                  aria-label="Close modal"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              <div className="flex-1 w-full bg-white">
+                <iframe
+                  src="https://docs.google.com/forms/d/e/1FAIpQLSf-sgBdTiKkmx44NBS1Int5JOqQw4p5eqMBaLzDiwH9WT7zUQ/viewform?embedded=true"
+                  className="w-full h-full border-0"
+                  title="RSVP Form"
+                >
+                  Loading…
+                </iframe>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }
