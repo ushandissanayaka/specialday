@@ -41,25 +41,27 @@ export default function LocationSection() {
         </div>
       </motion.div>
 
-      {/* MOBILE: Map on top, full width */}
-      <motion.div
-        initial={{ opacity: 0, y: -30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, margin: '-100px' }}
-        transition={{ duration: 0.9, delay: 0.3 }}
-        className="block md:hidden w-full relative z-20 pointer-events-auto"
-        style={{ height: '280px' }}
-      >
-        <iframe
-          src="https://maps.google.com/maps?q=Bolgoda%20Paradise%20Hotel%20Sri%20Lanka&z=16&output=embed"
-          width="100%"
-          height="100%"
-          style={{ border: 0, display: 'block', touchAction: 'auto', backgroundColor: 'transparent' }}
-          allowFullScreen={true}
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        />
-      </motion.div>
+      {/* MOBILE: Map on top, framed */}
+      <div className="block md:hidden px-4 mb-4 relative z-20 pointer-events-auto">
+        <motion.div
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: '-100px' }}
+          transition={{ duration: 0.9, delay: 0.3 }}
+          className="w-full relative rounded-2xl overflow-hidden border-2 border-white/30 shadow-lg"
+          style={{ height: '280px', background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(8px)' }}
+        >
+          <iframe
+            src="https://maps.google.com/maps?q=Bolgoda%20Paradise%20Hotel%20Sri%20Lanka&z=16&output=embed"
+            width="100%"
+            height="100%"
+            style={{ border: 0, display: 'block', touchAction: 'auto', backgroundColor: 'transparent' }}
+            allowFullScreen={true}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </motion.div>
+      </div>
 
       {/* Video section — full width */}
       <div className="relative w-full" style={{ minHeight: '90vh' }}>

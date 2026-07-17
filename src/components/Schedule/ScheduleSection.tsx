@@ -25,11 +25,6 @@ export default function ScheduleSection() {
 
       {/* Dark overlay to ensure text readability against global background */}
       <div className="absolute inset-0 bg-black/65 z-0" />
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-10 left-10 w-72 h-72 rounded-full bg-purple-50 blur-3xl opacity-60" />
-        <div className="absolute bottom-10 right-10 w-72 h-72 rounded-full bg-purple-50 blur-3xl opacity-60" />
-      </div>
 
       {/* Single Large Transparent Card for the entire schedule */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 md:px-12">
@@ -38,25 +33,25 @@ export default function ScheduleSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.1 }}
           transition={{ duration: 0.8 }}
-          className="rounded-3xl p-8 md:p-16 flex flex-col transition-all duration-300"
+          className="relative rounded-3xl p-8 md:p-16 flex flex-col transition-all duration-300 overflow-hidden"
           style={{
-            background: 'rgba(255,255,255,0.75)',
-            backdropFilter: 'blur(16px)',
-            WebkitBackdropFilter: 'blur(16px)',
-            border: '1px solid rgba(255,255,255,0.4)',
-            boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
+            background: 'rgba(255, 255, 255, 0.05)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            border: '1px solid rgba(255, 255, 255, 0.15)',
+            boxShadow: '0 8px 32px rgba(0,0,0,0.5), inset 0 0 32px rgba(255,255,255,0.02)',
           }}
         >
           {/* Header */}
-          <div className="text-center mb-12">
+          <div className="relative text-center mb-12">
             <span
-              className="block text-xs tracking-[6px] uppercase mb-3 text-amber-700 font-bold"
+              className="block text-xs tracking-[6px] uppercase mb-3 text-amber-400 font-bold"
               style={{ fontFamily: 'Lato, sans-serif' }}
             >
               — The Big Day —
             </span>
             <h2
-              className="font-semibold text-stone-900 drop-shadow-sm"
+              className="font-normal text-white drop-shadow-md"
               style={{ fontSize: 'clamp(2.2rem, 5vw, 3.8rem)' }}
             >
               📖 Event Schedule
@@ -64,22 +59,23 @@ export default function ScheduleSection() {
           </div>
 
           {/* Main Content: Left Schedule | Right Schedule */}
-          <div className="flex flex-col md:flex-row justify-center gap-12 md:gap-20">
+          <div className="relative flex flex-col md:flex-row justify-center gap-12 md:gap-20">
             {/* LEFT SCHEDULE */}
             <div className="flex-1 flex flex-col gap-10">
               {SCHEDULE_LEFT.map((item, i) => (
-                <div key={i} className="flex flex-col items-center md:items-end text-center md:text-right">
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className="text-2xl">{item.icon}</span>
+                <div key={i} className="relative flex flex-col items-center md:items-end text-center md:text-right hover:scale-105 transition-transform duration-300 cursor-default p-4 group">
+                  <div className="relative flex items-center justify-center md:justify-end gap-3 mb-2 w-full">
+                    <div className="absolute right-0 w-[150px] h-[40px] bg-white/10 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                    <span className="relative text-2xl z-10">{item.icon}</span>
                     <span
-                      className="text-base md:text-lg tracking-[4px] uppercase text-amber-800 font-extrabold"
+                      className="relative text-base md:text-lg tracking-[4px] uppercase text-amber-400 font-extrabold z-10 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]"
                       style={{ fontFamily: 'Lato, sans-serif' }}
                     >
                       {item.time}
                     </span>
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-stone-900 mb-2">{item.event}</h3>
-                  <p className="text-sm md:text-base text-stone-700 font-medium italic" style={{ fontFamily: 'Lato, sans-serif' }}>{item.desc}</p>
+                  <h3 className="relative text-2xl md:text-3xl font-bold text-white mb-2 z-10">{item.event}</h3>
+                  <p className="relative text-sm md:text-base text-white/70 font-medium italic z-10" style={{ fontFamily: 'Lato, sans-serif' }}>{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -87,18 +83,19 @@ export default function ScheduleSection() {
             {/* RIGHT SCHEDULE */}
             <div className="flex-1 flex flex-col gap-10">
               {SCHEDULE_RIGHT.map((item, i) => (
-                <div key={i} className="flex flex-col items-center md:items-start text-center md:text-left">
-                  <div className="flex items-center gap-3 mb-2">
+                <div key={i} className="relative flex flex-col items-center md:items-start text-center md:text-left hover:scale-105 transition-transform duration-300 cursor-default p-4 group">
+                  <div className="relative flex items-center justify-center md:justify-start gap-3 mb-2 w-full">
+                    <div className="absolute left-0 w-[150px] h-[40px] bg-white/10 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                     <span
-                      className="text-base md:text-lg tracking-[4px] uppercase text-amber-800 font-extrabold"
+                      className="relative text-base md:text-lg tracking-[4px] uppercase text-amber-400 font-extrabold z-10 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]"
                       style={{ fontFamily: 'Lato, sans-serif' }}
                     >
                       {item.time}
                     </span>
-                    <span className="text-2xl">{item.icon}</span>
+                    <span className="relative text-2xl z-10">{item.icon}</span>
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-stone-900 mb-2">{item.event}</h3>
-                  <p className="text-sm md:text-base text-stone-700 font-medium italic" style={{ fontFamily: 'Lato, sans-serif' }}>{item.desc}</p>
+                  <h3 className="relative text-2xl md:text-3xl font-bold text-white mb-2 z-10">{item.event}</h3>
+                  <p className="relative text-sm md:text-base text-white/70 font-medium italic z-10" style={{ fontFamily: 'Lato, sans-serif' }}>{item.desc}</p>
                 </div>
               ))}
             </div>

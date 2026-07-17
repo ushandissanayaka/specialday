@@ -3,11 +3,16 @@
 import { motion } from 'framer-motion'
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 30 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, delay: i * 0.18, ease: 'easeOut' },
+    transition: { 
+      type: "spring", 
+      stiffness: 60, 
+      damping: 15, 
+      delay: i * 0.15 
+    },
   }),
 }
 
@@ -63,7 +68,7 @@ export default function WeddingDetailsSection() {
           custom={0}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, amount: 0.1 }}
+          viewport={{ once: true, amount: 0.1 }}
           variants={fadeUp}
           className="block text-xs tracking-[6px] uppercase mb-5 text-amber-400"
           style={{ fontFamily: 'Lato, sans-serif', fontWeight: 700 }}
@@ -76,7 +81,7 @@ export default function WeddingDetailsSection() {
           custom={1}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, amount: 0.1 }}
+          viewport={{ once: true, amount: 0.1 }}
           variants={fadeUp}
           className="text-white text-center font-normal mb-4 leading-tight"
           style={{
@@ -93,7 +98,7 @@ export default function WeddingDetailsSection() {
           custom={2}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, amount: 0.1 }}
+          viewport={{ once: true, amount: 0.1 }}
           variants={fadeUp}
           className="text-amber-300 text-center mb-10"
           style={{
@@ -109,7 +114,7 @@ export default function WeddingDetailsSection() {
           custom={3}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, amount: 0.1 }}
+          viewport={{ once: true, amount: 0.1 }}
           variants={fadeUp}
           className="flex items-center gap-4 mb-14 w-full max-w-xs"
         >
@@ -126,10 +131,10 @@ export default function WeddingDetailsSection() {
               custom={i + 4}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: false, amount: 0.1 }}
+              viewport={{ once: true, amount: 0.1 }}
               variants={fadeUp}
-              whileHover={{ y: -6, boxShadow: '0 16px 40px rgba(212,175,55,0.25)' }}
-              className="flex flex-col items-center text-center rounded-2xl p-8 transition-all duration-300"
+              whileHover={{ scale: 1.05, boxShadow: '0 16px 40px rgba(212,175,55,0.25)' }}
+              className="flex flex-col items-center text-center rounded-2xl p-8 transition-colors duration-300"
               style={{
                 background: 'rgba(255,255,255,0.07)',
                 backdropFilter: 'blur(14px)',
@@ -138,7 +143,7 @@ export default function WeddingDetailsSection() {
                 boxShadow: '0 4px 24px rgba(0,0,0,0.3)',
               }}
             >
-              <span className="text-4xl mb-4">{detail.icon}</span>
+              <span className="text-4xl mb-4 block transform-gpu">{detail.icon}</span>
               <span
                 className="text-amber-400 text-xs tracking-[4px] uppercase mb-2 font-bold"
                 style={{ fontFamily: 'Lato, sans-serif' }}
